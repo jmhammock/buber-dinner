@@ -1,4 +1,6 @@
 using BuberDinner.Application.Services.Authentication;
+using BuberDinner.Application.Services.Authentication.Commands;
+using BuberDinner.Application.Services.Authentication.Queries;
 using BuberDinner.Contracts.Authentication;
 using BuberDinner.Domain.Common.Errors;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +11,23 @@ namespace BuberDinner.Api.Controllers;
 public class AuthenticationController : ApiController
 {
 
-    private readonly IAuthenticationService _authService;
+    private readonly IAuthenticationCommandService _authCommandService;
 
-    public AuthenticationController(IAuthenticationService authService)
+    private readonly IAuthenticationQueryService _authQueryService;
+
+
+    public AuthenticationController(
+        IAuthenticationCommandService authCommandService,
+        IAuthenticationQueryService authQueryService)
     {
-        _authService = authService;
+        _authCommandService = authCommandService;
+        _authQueryService = authQueryService;
     }
 
     [HttpPost("register")]
     async public Task<IActionResult> Register(RegisterRequest request)
     {
-        var registerResult = await _authService.Register(request.FirstName, request.LastName, request.Email, request.Password);
+        var registerResult = await _authCommandService.Register(request.FirstName, request.LastName, request.Email, request.Password);
 
         return registerResult.Match(
             authResult => Ok(authResult),
@@ -30,7 +38,7 @@ public class AuthenticationController : ApiController
     [HttpPost("login")]
     async public Task<IActionResult> Login(LoginRequest request)
     {
-        var loginResult = await _authService.Login(request.Email, request.Password);
+        var loginResult = await _authQueryService.Login(request.Email, request.Password);
 
         if (loginResult.IsError && loginResult.FirstError == Errors.User.InvalidCredentials)
         {

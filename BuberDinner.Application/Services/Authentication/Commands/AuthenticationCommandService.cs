@@ -1,18 +1,19 @@
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Persistence;
+using BuberDinner.Application.Services.Authentication.Common;
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Entities;
 using ErrorOr;
 
-namespace BuberDinner.Application.Services.Authentication;
+namespace BuberDinner.Application.Services.Authentication.Commands;
 
-public class AuthenticationService : IAuthenticationService
+public class AuthenticationCommandService : IAuthenticationCommandService
 {
     private readonly IJwtTokenGenerator _jwtGen;
 
     private readonly IUserRepository _userRepository;
 
-    public AuthenticationService(IJwtTokenGenerator jwtGen, IUserRepository userRepository)
+    public AuthenticationCommandService(IJwtTokenGenerator jwtGen, IUserRepository userRepository)
     {
         _jwtGen = jwtGen;
         _userRepository = userRepository;
@@ -43,18 +44,4 @@ public class AuthenticationService : IAuthenticationService
         );
     }
 
-    async public Task<ErrorOr<AuthenticationResult>> Login(string Email, string Password)
-    {
-        if (await _userRepository.GetUserAsync(Email, Password) is not User user)
-        {
-            return Errors.User.InvalidCredentials;
-        }
-
-        var token = _jwtGen.GenerateToken(user);
-
-        return new AuthenticationResult(
-            user,
-            token
-        );
-    }
 }
