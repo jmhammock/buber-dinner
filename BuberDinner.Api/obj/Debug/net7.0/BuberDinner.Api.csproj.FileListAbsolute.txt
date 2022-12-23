@@ -45,3 +45,6 @@
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/ErrorOr.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/MediatR.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/MediatR.Contracts.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/MediatR.Extensions.Microsoft.DependencyInjection.dll

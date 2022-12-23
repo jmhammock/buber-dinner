@@ -1,38 +1,39 @@
+using BuberDinner.Application.Common;
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Persistence;
-using BuberDinner.Application.Services.Authentication.Common;
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Entities;
 using ErrorOr;
+using MediatR;
 
-namespace BuberDinner.Application.Services.Authentication.Commands;
+namespace BuberDinner.Application.Authentication.Commands.Register;
 
-public class AuthenticationCommandService : IAuthenticationCommandService
+public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {
+
     private readonly IJwtTokenGenerator _jwtGen;
 
     private readonly IUserRepository _userRepository;
-
-    public AuthenticationCommandService(IJwtTokenGenerator jwtGen, IUserRepository userRepository)
+    public RegisterCommandHandler(IJwtTokenGenerator jwtGen, IUserRepository userRepository)
     {
         _jwtGen = jwtGen;
         _userRepository = userRepository;
     }
 
-    async public Task<ErrorOr<AuthenticationResult>> Register(string firstName, string lastName, string email, string password)
+    public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         //Check if user already exists
-        if (await _userRepository.GetUserAsync(email) != null)
+        if (await _userRepository.GetUserAsync(command.Email) != null)
         {
             return Errors.User.DuplicateEmail;
         }
 
         var user = await _userRepository.AddUserAsync(new User
         {
-            FirstName = firstName,
-            LastName = lastName,
-            Email = email,
-            Password = password
+            FirstName = command.FirstName,
+            LastName = command.LastName,
+            Email = command.Email,
+            Password = command.Password
         });
 
         //Create JWT token
@@ -43,5 +44,4 @@ public class AuthenticationCommandService : IAuthenticationCommandService
             token
         );
     }
-
 }

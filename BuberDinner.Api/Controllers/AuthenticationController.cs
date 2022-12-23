@@ -1,8 +1,8 @@
-using BuberDinner.Application.Services.Authentication;
-using BuberDinner.Application.Services.Authentication.Commands;
-using BuberDinner.Application.Services.Authentication.Queries;
+using BuberDinner.Application.Authentication.Commands.Register;
+using BuberDinner.Application.Authentication.Queries.Login;
 using BuberDinner.Contracts.Authentication;
 using BuberDinner.Domain.Common.Errors;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers;
@@ -11,23 +11,18 @@ namespace BuberDinner.Api.Controllers;
 public class AuthenticationController : ApiController
 {
 
-    private readonly IAuthenticationCommandService _authCommandService;
+    private readonly ISender _mediator;
 
-    private readonly IAuthenticationQueryService _authQueryService;
-
-
-    public AuthenticationController(
-        IAuthenticationCommandService authCommandService,
-        IAuthenticationQueryService authQueryService)
+    public AuthenticationController(ISender mediator)
     {
-        _authCommandService = authCommandService;
-        _authQueryService = authQueryService;
+        _mediator = mediator;
     }
 
     [HttpPost("register")]
     async public Task<IActionResult> Register(RegisterRequest request)
     {
-        var registerResult = await _authCommandService.Register(request.FirstName, request.LastName, request.Email, request.Password);
+        var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+        var registerResult = await _mediator.Send(command);
 
         return registerResult.Match(
             authResult => Ok(authResult),
@@ -38,7 +33,8 @@ public class AuthenticationController : ApiController
     [HttpPost("login")]
     async public Task<IActionResult> Login(LoginRequest request)
     {
-        var loginResult = await _authQueryService.Login(request.Email, request.Password);
+        var query = new LoginQuery(request.Email, request.Password);
+        var loginResult = await _mediator.Send(query);
 
         if (loginResult.IsError && loginResult.FirstError == Errors.User.InvalidCredentials)
         {

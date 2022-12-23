@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2/a9jt4PV5dmzORNd3Rlzvr23VQtcdEHVkl0sM2LVdN8ii5nqxvOCdzJJ90FlRRpdG2Ikmd0vakAFFYH5L4UnA==",
+  "dgSpecHash": "GwicUODmuS8joVST6h+RzDNLWqkviOHB1Uy8eL2luyfwwecOJZmxMg5h8F7Vh+zBArhM3wxZQKKbEga2bkcORw==",
   "success": true,
   "projectFilePath": "/home/jason/Projects/BuberDinner/BuberDinner.Api/BuberDinner.Api.csproj",
   "expectedPackageFiles": [
     "/home/jason/.nuget/packages/erroror/1.2.1/erroror.1.2.1.nupkg.sha512",
+    "/home/jason/.nuget/packages/mediatr/11.1.0/mediatr.11.1.0.nupkg.sha512",
+    "/home/jason/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
+    "/home/jason/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/11.0.0/mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "/home/jason/.nuget/packages/microsoft.aspnetcore.openapi/7.0.1/microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
     "/home/jason/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/home/jason/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
