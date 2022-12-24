@@ -3,6 +3,6 @@ using BuberDinner.Domain.Entities;
 namespace BuberDinner.Application.Common;
 
 public record AuthenticationResult(
-    User user,
+    User User,
     string Token
 );

@@ -8,13 +8,13 @@ using MediatR;
 
 namespace BuberDinner.Application.Authentication.Queries.Login;
 
-public class LoginCommandHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
+public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
 {
     private readonly IJwtTokenGenerator _jwtGen;
 
     private readonly IUserRepository _userRepository;
 
-    public LoginCommandHandler(IUserRepository userRepository, IJwtTokenGenerator jwtGen)
+    public LoginQueryHandler(IUserRepository userRepository, IJwtTokenGenerator jwtGen)
     {
         _userRepository = userRepository;
         _jwtGen = jwtGen;
