@@ -51,3 +51,6 @@
 /home/jason/Projects/BuberDinner/BuberDinner.Api/obj/Debug/net7.0/BuberDinner.Api.pdb
 /home/jason/Projects/BuberDinner/BuberDinner.Api/obj/Debug/net7.0/BuberDinner.Api.genruntimeconfig.cache
 /home/jason/Projects/BuberDinner/BuberDinner.Api/obj/Debug/net7.0/ref/BuberDinner.Api.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
