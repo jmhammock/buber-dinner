@@ -54,3 +54,6 @@
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.dll
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
 /home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/jason/Projects/BuberDinner/BuberDinner.Api/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
